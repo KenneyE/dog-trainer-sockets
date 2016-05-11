@@ -11,6 +11,10 @@
     #messages { list-style-type: none; margin: 0; padding: 0; }
     #messages li { padding: 5px 10px; }
     #messages li:nth-child(odd) { background: #eee; }
+    button {
+        width: 200px;
+        height: 30px;
+    }
     </style>
 </head>
 <body>
@@ -24,32 +28,19 @@
 
     <button onclick='makeSound("no-reese")' id='no-reese-btn' >No Reese</button>
 
-    <script src="/socket.io/socket.io.js"></script>
+    <script src="https://cdn.socket.io/socket.io-1.4.5.js"></script>
     <script src="http://code.jquery.com/jquery-1.11.1.js"></script>
 
     <script>
     var socket = io();
     function makeSound (msg) {
         socket.emit('chat message', msg);
-        $('#m').val('');
         return false;
     }
 
-    // $('form').submit(function(){
-    //     socket.emit('chat message', $('#m').val());
-    //     $('#m').val('');
-    //     return false;
-    // });
     socket.on('chat message', function(msg){
         $('#' + msg)[0].play();
     });
     </script>
-
-    <style>
-    button {
-        width: 200px;
-        height: 30px;
-    }
-    </style>
 </body>
 </html>
