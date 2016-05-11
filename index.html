@@ -10,13 +10,41 @@
         width: 200px;
         height: 30px;
     }
+
+    button:hover {
+        cursor: pointer;
+        box-shadow: gray 3px 2px 3px;
+    }
+
     </style>
 </head>
 <body>
-    <audio id='no-reese' src='media/no-reese.mp3' type='audio/mp3'></audio>
-    <audio id='no-blue' src='media/no-reese.m4a' type='audio/m4a'></audio>
 
-    <button onclick='makeSound("no-reese")' id='no-reese-btn' >No Reese</button>
+    <audio id='no-reese-1'  src='media/no-reese-1.mp3' type='audio/mp3'></audio>
+    <audio id='no-reese-2'  src='media/no-reese-2.mp3' type='audio/mp3'></audio>
+    <audio id='no-reese-3'  src='media/no-reese-3.mp3' type='audio/mp3'></audio>
+    <audio id='no-blue-1'   src='media/no-blue-1.mp3' type='audio/mp3'></audio>
+    <audio id='no-blue-2'   src='media/no-blue-2.mp3' type='audio/mp3'></audio>
+    <audio id='no-blue-3'   src='media/no-blue-3.mp3' type='audio/mp3'></audio>
+    <audio id='its-okay'    src='media/its-okay.mp3' type='audio/mp3'></audio>
+    <audio id='no-pee'    src='media/no-pee.mp3' type='audio/mp3'></audio>
+
+
+    <h3>Reese</h3>
+    <button onclick='makeSound("no-reese-1")' >No Reese 1</button>
+    <button onclick='makeSound("no-reese-2")' >No Reese 2</button>
+    <button onclick='makeSound("no-reese-3")' >No Reese 3</button>
+
+    <h3>Blue</h3>
+    <button onclick='makeSound("no-blue-1")' >No Blue 1</button>
+    <button onclick='makeSound("no-blue-2")' >No Blue 2</button>
+    <button onclick='makeSound("no-blue-3")' >No Blue 3</button>
+
+
+    <h3>Other</h3>
+    <button onclick='makeSound("its-okay")' >It's Okay</button>
+    <button onclick='makeSound("no-pee")' >No Pee</button>
+
 
     <script src="socket.io/socket.io.js"></script>
     <script src="https://code.jquery.com/jquery-1.11.1.js"></script>
