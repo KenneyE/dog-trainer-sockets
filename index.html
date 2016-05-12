@@ -1,7 +1,12 @@
 <!doctype html>
 <html>
 <head>
-    <title>Socket.IO chat</title>
+    <title>Dog Trainer</title>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+
     <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
     body { font: 13px Helvetica, Arial; }
@@ -11,54 +16,53 @@
         height: 30px;
     }
 
-    button:hover {
-        cursor: pointer;
-        box-shadow: gray 3px 2px 3px;
-    }
+
 
     </style>
 </head>
 <body>
 
-    <audio id='no-reese-1'  src='media/no-reese-1.mp3' type='audio/mp3'></audio>
-    <audio id='no-reese-2'  src='media/no-reese-2.mp3' type='audio/mp3'></audio>
-    <audio id='no-reese-3'  src='media/no-reese-3.mp3' type='audio/mp3'></audio>
-    <audio id='no-blue-1'   src='media/no-blue-1.mp3' type='audio/mp3'></audio>
-    <audio id='no-blue-2'   src='media/no-blue-2.mp3' type='audio/mp3'></audio>
-    <audio id='no-blue-3'   src='media/no-blue-3.mp3' type='audio/mp3'></audio>
-    <audio id='its-okay'    src='media/its-okay.mp3' type='audio/mp3'></audio>
-    <audio id='no-pee'    src='media/no-pee.mp3' type='audio/mp3'></audio>
+    <div class='container'>
+        <audio id='no-reese-1'  src='media/no-reese-1.mp3' type='audio/mp3'></audio>
+        <audio id='no-reese-2'  src='media/no-reese-2.mp3' type='audio/mp3'></audio>
+
+        <audio id='no-blue-1'   src='media/no-blue-1.mp3' type='audio/mp3'></audio>
+        <audio id='no-blue-2'   src='media/no-blue-2.mp3' type='audio/mp3'></audio>
+        <audio id='no-blue-3'   src='media/no-blue-3.mp3' type='audio/mp3'></audio>
+
+        <audio id='good-dogs'   src='media/good-dogs.mp3' type='audio/mp3'></audio>
+        <audio id='no-pee'      src='media/no-pee.mp3' type='audio/mp3'></audio>
+        <audio id='its-okay'    src='media/its-okay.mp3' type='audio/mp3'></audio>
+
+        <h3>Reese</h3>
+        <button class='btn btn-default' onclick='makeSound("no-reese-1")' >No Reese 1</button>
+        <button class='btn btn-default' onclick='makeSound("no-reese-2")' >No Reese 2</button>
+
+        <h3>Blue</h3>
+        <button class='btn btn-default disabled' onclick='makeSound("no-blue-1")' >No Blue 1</button>
+        <button class='btn btn-default disabled' onclick='makeSound("no-blue-2")' >No Blue 2</button>
+
+        <h3>Other</h3>
+        <button class='btn btn-default' onclick='makeSound("its-okay")' >It's Okay</button>
+        <button class='btn btn-default' onclick='makeSound("no-pee")' >No Pee</button>
+        <button class='btn btn-default' onclick='makeSound("good-dogs")' >Good Dogs</button>
+
+        <div class='container'>
 
 
-    <h3>Reese</h3>
-    <button onclick='makeSound("no-reese-1")' >No Reese 1</button>
-    <button onclick='makeSound("no-reese-2")' >No Reese 2</button>
-    <button onclick='makeSound("no-reese-3")' >No Reese 3</button>
+            <script src="socket.io/socket.io.js"></script>
+            <script src="https://code.jquery.com/jquery-1.11.1.js"></script>
 
-    <h3>Blue</h3>
-    <button onclick='makeSound("no-blue-1")' >No Blue 1</button>
-    <button onclick='makeSound("no-blue-2")' >No Blue 2</button>
-    <button onclick='makeSound("no-blue-3")' >No Blue 3</button>
+            <script>
+            var socket = io();
+            function makeSound (msg) {
+                socket.emit('chat message', msg);
+                return false;
+            }
 
-
-    <h3>Other</h3>
-    <button onclick='makeSound("its-okay")' >It's Okay</button>
-    <button onclick='makeSound("no-pee")' >No Pee</button>
-
-
-    <script src="socket.io/socket.io.js"></script>
-    <script src="https://code.jquery.com/jquery-1.11.1.js"></script>
-
-    <script>
-    var socket = io();
-    function makeSound (msg) {
-        socket.emit('chat message', msg);
-        return false;
-    }
-
-    socket.on('chat message', function(msg){
-        $('#' + msg)[0].play();
-    });
-    </script>
-</body>
-</html>
+            socket.on('chat message', function(msg){
+                $('#' + msg)[0].play();
+            });
+            </script>
+        </body>
+        </html>
