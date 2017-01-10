@@ -1,7 +1,7 @@
 {
-  "name": "socket-chat-example",
+  "name": "dog-trainer-express",
   "version": "0.0.1",
-  "description": "my first socket.io app",
+  "description": "A socket program for training dogs",
   "dependencies": {
     "express": "^4.10.2",
     "socket.io": "^1.4.6"
